@@ -25,7 +25,7 @@ function submitHandle() {
     return;
   }
 
-  if (wordNumber < 6) {
+  if (wordNumber < 5) {
     letterNumber = 0;
     wordNumber++;
   } else {
