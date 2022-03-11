@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 2% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.words-container {
+  width: 100%;
+}
+
+.words-container .word {
+  display: flex;
+  justify-content: center;
+}
+
+.words-container .letter {
+  width: 48px;
+  height: 40px;
+  border: 1px solid black;
+}
