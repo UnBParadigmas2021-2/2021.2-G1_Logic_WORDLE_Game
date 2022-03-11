@@ -32,4 +32,11 @@ Adicione 1 ou mais vídeos com a execução do projeto.
 Quaisquer outras informações sobre seu projeto podem ser descritas a seguir.
 
 ## Fontes
-Caso utilize materiais de terceiros, referencie-os adequadamente.
+Os arquivos `pt_BR.dic` e `pt_BR.aff` possuem licença MPLv2 (Mozilla Public
+License v2.0)ou LGPLv3 (Lesser General GNU Public License v3.0) e foram
+escritos por Raimundo Santos Moura de 2006 a 2013. Ambos foram extraídos do
+pacote VERO (Verificador Ortográfico da Língua Portuguesa) do LibreOffice,
+versão 3.2.15.
+
+O pacote achava-se disponível na data de 11 de março de 2022 no
+[link](https://pt-br.libreoffice.org/assets/Uploads/PT-BR-Documents/VERO/VeroptBR3215AOC.oxt)
