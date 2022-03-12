@@ -25,6 +25,10 @@ function submitHandle() {
     return;
   }
 
+  wrongLetter(0, 0);
+  RightLetter(1, 0);
+  RightLetterPosition(2, 0);
+
   if (wordNumber < 5) {
     letterNumber = 0;
     wordNumber++;
@@ -35,18 +39,18 @@ function submitHandle() {
   function wrongLetter(idLetter, idWord) {
     const word = document.getElementById("word" + idWord);
     const letterNode = word.children[idLetter];
-    letterNode.style.backgroundColor = "red";
+    letterNode.style.backgroundColor = "#262C38";
   }
 
   function RightLetter(idLetter, idWord) {
     const word = document.getElementById("word" + idWord);
     const letterNode = word.children[idLetter];
-    letterNode.style.backgroundColor = "yellow";
+    letterNode.style.backgroundColor = "#D3AD69";
   }
 
   function RightLetterPosition(idLetter, idWord) {
     const word = document.getElementById("word" + idWord);
     const letterNode = word.children[idLetter];
-    letterNode.style.backgroundColor = "green";
+    letterNode.style.backgroundColor = "#7FD4A3";
   }
 }

@@ -7,6 +7,7 @@
 html,
 body {
   height: 100%;
+  background-color: #48556b;
 }
 
 .container {
@@ -18,9 +19,11 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: whitesmoke;
 }
 
 .words-container {
+  margin-top: 24px;
   width: 100%;
 }
 
@@ -32,5 +35,36 @@ body {
 .words-container .letter {
   width: 48px;
   height: 40px;
-  border: 1px solid black;
+  border: 1px solid #a4aab6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.buttons-container {
+  margin-top: 24px;
+}
+
+.buttons-container button {
+  width: 112px;
+  height: 30px;
+  border-radius: 6px;
+  background-color: #a4aab6;
+  color: whitesmoke;
+  font-weight: bolder;
+}
+
+.keypad-container {
+  margin-top: 24px;
+}
+
+.keypad-container button {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background-color: #a4aab6;
+  color: whitesmoke;
+  font-weight: bolder;
 }
