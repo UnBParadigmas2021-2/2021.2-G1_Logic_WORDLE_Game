@@ -4,14 +4,25 @@
 
 % URL handlers.
 :- http_handler('/', handle_request, []).
-:- http_handler('/word', handle_word_request, [methods([get])]).
+:- http_handler('/start', handle_start_request, [methods([get])]).
+:- http_handler('/verify', handle_verify_request, []).
 
-get_word(Word) :-
+verify(Word) :-
+    selected_word(Word).
+
+handle_verify_request(Request) :-
+    verify(Word),
+    reply_json_dict(Word).
+
+start(Word) :-
     consult('word_utils'),
-    get_random_word(Word).
+    get_random_word(Selected_Word),
+    retractall(selected_word(_)),
+    assertz(selected_word(Selected_Word)),
+    selected_word(Word).
 
-handle_word_request(Request) :-
-    get_word(Word),
+handle_start_request(Request) :-
+    start(Word),
     reply_json_dict(Word).
 
 % Calculates a + b.
