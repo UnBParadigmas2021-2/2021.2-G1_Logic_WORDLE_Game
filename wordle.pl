@@ -14,28 +14,24 @@ bufferRemove(ELEM, [HEAD | TAIL], [HEAD | RESULT]) :-	% elem in tail (recursive)
 	bufferRemove(ELEM, TAIL, RESULT).
 
 % base call
-get_colors([], [], _, _, [], COLOR, COLOR).
+get_colors([], [], _, _, _, COLOR, COLOR).
+
 % add a entry green on the list 
 get_colors([H1 | T1], [H2 | T2], GUESS, WORD, BUFFER, COLORS, [green | Z]):-
     write(H1), nl,
     H1=H2,
 	bufferRemove(H1, BUFFER, NEWBUFFER),
     get_colors(T1, T2, GUESS, WORD, NEWBUFFER, COLORS, Z).
+
 % add a entry yellow on the list
 get_colors([H1 | T1], [_ | T2], GUESS, WORD, BUFFER, COLORS, [yellow | Z]):-
     check_char(H1, BUFFER),
 	bufferRemove(H1, BUFFER, NEWBUFFER),
     get_colors(T1, T2, GUESS, WORD, NEWBUFFER, COLORS, Z).
+
 % add a entry cyan on the list
 get_colors([_ | T1], [_ | T2], GUESS, WORD, BUFFER, COLORS, [cyan | Z]):-
     get_colors(T1, T2, GUESS, WORD, BUFFER, COLORS, Z).
-% add a entry green on the list (yellow buffer empty)
-get_colors([H1 | T1], [H2 | T2], GUESS, WORD, _, COLORS, [green | Z]):-
-    H1=H2,
-    get_colors(T1, T2, GUESS, WORD, [], COLORS, Z).
-% add a entry cyan on the list (yellow buffer empty)
-get_colors([_ | T1], [_ | T2], GUESS, WORD, _, COLORS, [cyan | Z]):-
-    get_colors(T1, T2, GUESS, WORD, [], COLORS, Z).
 
 
 wordle(GUESS, WORD):-
