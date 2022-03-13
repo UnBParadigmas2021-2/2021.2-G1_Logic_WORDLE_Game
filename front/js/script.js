@@ -10,22 +10,17 @@ function startGame() {
   xmlHttp.open("GET", url + "start", false); // false for synchronous request
   xmlHttp.send(null);
   word = xmlHttp.responseText;
+  console.log(word);
 }
 
-function guessGame() {
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", url + "verify", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var json = JSON.parse(xhr.responseText);
-      console.log(json);
-    }
-  };
-
-  var data = JSON.stringify({ guess: "hiper" });
-  xhr.send(data);
+function guessGame(wordPost) {
+  return $.ajax({
+    url: url + "verify",
+    type: "post",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({ guess: wordPost }),
+  });
 }
 
 function letterHandle(letter) {
@@ -39,8 +34,6 @@ function letterHandle(letter) {
 }
 
 function deleteHandle() {
-  guessGame();
-
   if (letterNumber > 0) {
     const word = document.getElementById("word" + wordNumber);
     const letterNode = word.children[letterNumber - 1];
@@ -49,20 +42,47 @@ function deleteHandle() {
   }
 }
 
-function submitHandle() {
+async function submitHandle() {
   if (letterNumber != 5) {
+    console.log("Palavra com menos de 5 letras");
     return;
   }
 
-  wrongLetter(0, 0);
-  RightLetter(1, 0);
-  RightLetterPosition(2, 0);
-
   if (wordNumber < 5) {
+    var wordTemp = "";
+
+    for (let index = 0; index < 5; index++) {
+      const word = document.getElementById("word" + wordNumber);
+      const letterNode = word.children[index];
+      wordTemp += letterNode.innerHTML;
+    }
+
+    const data = await guessGame(wordTemp.toLowerCase());
+
+    if (data.status && data.status == "fail") {
+      console.log("palavra não existe");
+      return;
+    } else if (data.status && (data.status == "going" || data.status == "ok")) {
+      for (let index = 0; index < 5; index++) {
+        const element = data.data[wordNumber].colors[index];
+        if (element == "cyan") {
+          wrongLetter(index, wordNumber);
+        } else if (element == "yellow") {
+          RightLetter(index, wordNumber);
+        } else if (element == "green") {
+          RightLetterPosition(index, wordNumber);
+        }
+      }
+    }
+
+    if (data.status == "ok") {
+      console.log("você ganhou o jogo");
+    }
+
     letterNumber = 0;
     wordNumber++;
   } else {
-    console.log("enviar");
+    console.log("Não conseguiu");
   }
 }
 
