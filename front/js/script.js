@@ -1,5 +1,7 @@
 var wordNumber = 0;
 var letterNumber = 0;
+var url = "http://localhost:8000/";
+var word = "";
 
 function letterHandle(letter) {
   if (letterNumber < 5) {
@@ -35,22 +37,31 @@ function submitHandle() {
   } else {
     console.log("enviar");
   }
-
-  function wrongLetter(idLetter, idWord) {
-    const word = document.getElementById("word" + idWord);
-    const letterNode = word.children[idLetter];
-    letterNode.style.backgroundColor = "#262C38";
-  }
-
-  function RightLetter(idLetter, idWord) {
-    const word = document.getElementById("word" + idWord);
-    const letterNode = word.children[idLetter];
-    letterNode.style.backgroundColor = "#D3AD69";
-  }
-
-  function RightLetterPosition(idLetter, idWord) {
-    const word = document.getElementById("word" + idWord);
-    const letterNode = word.children[idLetter];
-    letterNode.style.backgroundColor = "#7FD4A3";
-  }
 }
+
+function wrongLetter(idLetter, idWord) {
+  const word = document.getElementById("word" + idWord);
+  const letterNode = word.children[idLetter];
+  letterNode.style.backgroundColor = "#262C38";
+}
+
+function RightLetter(idLetter, idWord) {
+  const word = document.getElementById("word" + idWord);
+  const letterNode = word.children[idLetter];
+  letterNode.style.backgroundColor = "#D3AD69";
+}
+
+function RightLetterPosition(idLetter, idWord) {
+  const word = document.getElementById("word" + idWord);
+  const letterNode = word.children[idLetter];
+  letterNode.style.backgroundColor = "#7FD4A3";
+}
+
+function startGame() {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", url + "start", false); // false for synchronous request
+  xmlHttp.send(null);
+  word = xmlHttp.responseText;
+}
+
+window.onload = startGame;
