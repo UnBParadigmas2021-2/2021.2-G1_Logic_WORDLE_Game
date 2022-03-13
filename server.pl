@@ -4,10 +4,10 @@
 :- use_module(library(http/http_cors)).
 
 % URL handlers.
+:- set_setting(http:cors, [*]).
 :- http_handler('/', handle_request, [methods([post])]).
 :- http_handler('/start', handle_start_request, [methods([get])]).
-:- http_handler('/verify', handle_verify_request, []).
-:- set_setting(http:cors, [*]).
+:- http_handler('/verify', handle_verify_request, [post]).
 
 verify(_{guess:Guess}, _{status:Status,data:Data}) :-
     selected_word(Word),
@@ -21,7 +21,9 @@ verify(_{guess:Guess}, _{status:Status,data:Data}) :-
     guesses(Data).
 
 handle_verify_request(Request) :-
-    cors_enable,
+    cors_enable(Request,
+                  [ methods([get,post,delete])
+                  ]),
     http_read_json_dict(Request, Query),
     verify(Query, Answer),
     reply_json_dict(Answer).
@@ -36,7 +38,9 @@ start(Word) :-
     selected_word(Word).
 
 handle_start_request(Request) :-
-    cors_enable,
+    cors_enable(Request,
+                  [ methods([get,post,delete])
+                  ]),
     start(Word),
     reply_json_dict(Word).
 
@@ -47,6 +51,9 @@ solve(_{a:X, b:Y}, _{answer:N}) :-
     N is X + Y.
 
 handle_request(Request) :-
+    cors_enable(Request,
+                  [ methods([get,post,delete])
+                  ]),
     http_read_json_dict(Request, Query),
     solve(Query, Solution),
     reply_json_dict(Solution).
