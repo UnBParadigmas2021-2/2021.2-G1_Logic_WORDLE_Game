@@ -3,11 +3,21 @@
 :- use_module(library(http/http_json)).
 :- use_module(library(http/http_cors)).
 
+% Serve the page
+:- use_module(library(http/http_server)).
+:- use_module(library(http/http_files)).
+:- use_module(library(http/http_path)).
+
 % URL handlers.
 :- set_setting(http:cors, [*]).
-:- http_handler('/', handle_request, [methods([post])]).
-:- http_handler('/start', handle_start_request, [methods([get])]).
-:- http_handler('/verify', handle_verify_request, [post]).
+:- http_handler(root(.), handle_request, [methods([post])]).
+:- http_handler(root(start), handle_start_request, [methods([get])]).
+:- http_handler(root(verify), handle_verify_request, [post]).
+
+% Game and its assets
+:- http_handler(root(game), http_reply_file('front/index.html', []), [prefix]).
+:- http_handler('/css/style.css', http_reply_file('front/css/style.css', []), []).
+:- http_handler('/js/script.js', http_reply_file('front/js/script.js', []), []).
 
 verify(_{guess:Guess}, _{status:Status,data:Data}) :-
     selected_word(Word),
