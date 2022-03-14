@@ -88,10 +88,15 @@ async function submitHandle() {
 
     if (data.status == "ok") {
       winHandler();
+      return;
     }
 
     letterNumber = 0;
     wordNumber++;
+
+    if (wordNumber == 6) {
+      failHandler();
+    }
   } else {
     failHandler();
   }
