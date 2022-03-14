@@ -14,10 +14,10 @@ bufferRemove(ELEM, [HEAD | TAIL], [HEAD | RESULT]) :-	% elem in tail (recursive)
 % base call
 get_colors([], [], _, _, _, COLOR, COLOR).
 
-% add a entry green on the list 
+% add a entry green on the list
 get_colors([H1 | T1], [H2 | T2], GUESS, WORD, BUFFER, COLORS, [green | Z]):-
     % write(H1), nl,
-    H1=H2,
+    H1 == H2,
 	bufferRemove(H1, BUFFER, NEWBUFFER),
     get_colors(T1, T2, GUESS, WORD, NEWBUFFER, COLORS, Z).
 
@@ -28,7 +28,8 @@ get_colors([H1 | T1], [_ | T2], GUESS, WORD, BUFFER, COLORS, [yellow | Z]):-
     get_colors(T1, T2, GUESS, WORD, NEWBUFFER, COLORS, Z).
 
 % add a entry cyan on the list
-get_colors([_ | T1], [_ | T2], GUESS, WORD, BUFFER, COLORS, [cyan | Z]):-
+get_colors([H1 | T1], [H2 | T2], GUESS, WORD, BUFFER, COLORS, [cyan | Z]):-
+    H1 \== H2,
     get_colors(T1, T2, GUESS, WORD, BUFFER, COLORS, Z).
 
 define_success_status(TIPS, STATUS) :-
@@ -41,7 +42,7 @@ wordle(GUESS, WORD, STATUS, TIPS) :-
         atom_chars(GUESS, L_GUESS),
     	atom_chars(WORD, L_WORD),
 	get_colors(L_GUESS, L_WORD, L_GUESS, L_WORD, L_WORD, [], TIPS),
-        define_success_status(TIPS, STATUS), !    	
+        define_success_status(TIPS, STATUS), !
 	% write(TIPS), nl, !.
 	;
 	atom_string(STATUS, "fail"),
