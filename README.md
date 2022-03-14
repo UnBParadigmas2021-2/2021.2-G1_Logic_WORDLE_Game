@@ -32,7 +32,16 @@ Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcioname
 
 Para instalar o programa você precisa inicialmente [instalar o prolog na sua máquina](https://www.swi-prolog.org/Download.html).
 
-Com o programa instalado rode o arquivo server.pl e visite essa [página](http://localhost:8000/).
+Com o programa instalado rode o arquivo server.pl e visite essa [página](http://localhost:8000/game).
+
+### Usando docker-compose
+
+Uma forma fácil de testar o projeto é utilizando [docker-compose](https://docs.docker.com/compose/install/).
+Para isso apenas use o comando abaixo
+
+```bash
+ sudo docker-compose wordle
+```
 
 ## Uso 
 
