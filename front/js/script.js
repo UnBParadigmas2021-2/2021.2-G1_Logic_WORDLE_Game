@@ -2,6 +2,10 @@ var wordNumber = 0;
 var letterNumber = 0;
 var url = "http://localhost:8000/";
 var word = "";
+var modal = document.getElementById("modal-win");
+var span = document.getElementsByClassName("close")[0];
+var attempts = 0;
+
 
 window.onload = startGame;
 
@@ -76,14 +80,36 @@ async function submitHandle() {
     }
 
     if (data.status == "ok") {
-      console.log("você ganhou o jogo");
+			winHandler();
     }
 
     letterNumber = 0;
     wordNumber++;
   } else {
-    console.log("Não conseguiu");
+		failHandler();
   }
+}
+
+function winHandler(){
+	const description = document.getElementById("description-win");
+	const header = document.getElementById("header-win");
+	header.innerHTML = "Parabéns!! você acertou a palavra";
+	description.innerHTML = "Você precisou de " + wordNumber + " tentativas";
+	modal.style.display = "block";
+}
+
+function failHandler(){
+	const description = document.getElementById("description-win");
+	const header = document.getElementById("header-win");
+	const modalHeader = document.getElementById("modal-header");
+	header.innerHTML = "Infelizmente você não conseguiu";
+	description.innerHTML = "Você pode tentar novamente a qualquer hora";
+	modalHeader.style.background = "#f44336";
+	modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
 }
 
 function wrongLetter(idLetter, idWord) {
