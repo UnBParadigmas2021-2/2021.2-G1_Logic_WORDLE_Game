@@ -1,11 +1,11 @@
 var wordNumber = 0;
 var letterNumber = 0;
+var tryNumber = 0;
 var url = "http://localhost:8000/";
 var word = "";
 var modal = document.getElementById("modal-win");
 var span = document.getElementsByClassName("close")[0];
 var attempts = 0;
-
 
 window.onload = startGame;
 
@@ -52,7 +52,9 @@ async function submitHandle() {
     return;
   }
 
-  if (wordNumber < 5) {
+  console.log(wordNumber);
+
+  if (wordNumber <= 5) {
     var wordTemp = "";
 
     for (let index = 0; index < 5; index++) {
@@ -60,15 +62,18 @@ async function submitHandle() {
       const letterNode = word.children[index];
       wordTemp += letterNode.innerHTML;
     }
+    console.log(wordTemp);
 
     const data = await guessGame(wordTemp.toLowerCase());
+    console.log(data);
 
     if (data.status && data.status == "fail") {
       console.log("palavra não existe");
+      tryNumber++;
       return;
     } else if (data.status && (data.status == "going" || data.status == "ok")) {
       for (let index = 0; index < 5; index++) {
-        const element = data.data[wordNumber].colors[index];
+        const element = data.data[tryNumber].colors[index];
         if (element == "cyan") {
           wrongLetter(index, wordNumber);
         } else if (element == "yellow") {
@@ -77,40 +82,42 @@ async function submitHandle() {
           RightLetterPosition(index, wordNumber);
         }
       }
+
+      tryNumber++;
     }
 
     if (data.status == "ok") {
-			winHandler();
+      winHandler();
     }
 
     letterNumber = 0;
     wordNumber++;
   } else {
-		failHandler();
+    failHandler();
   }
 }
 
-function winHandler(){
-	const description = document.getElementById("description-win");
-	const header = document.getElementById("header-win");
-	header.innerHTML = "Parabéns!! você acertou a palavra";
-	description.innerHTML = "Você precisou de " + wordNumber + " tentativas";
-	modal.style.display = "block";
+function winHandler() {
+  const description = document.getElementById("description-win");
+  const header = document.getElementById("header-win");
+  header.innerHTML = "Parabéns!! você acertou a palavra";
+  description.innerHTML = "Você precisou de " + wordNumber + " tentativas";
+  modal.style.display = "block";
 }
 
-function failHandler(){
-	const description = document.getElementById("description-win");
-	const header = document.getElementById("header-win");
-	const modalHeader = document.getElementById("modal-header");
-	header.innerHTML = "Infelizmente você não conseguiu";
-	description.innerHTML = "Você pode tentar novamente a qualquer hora";
-	modalHeader.style.background = "#f44336";
-	modal.style.display = "block";
+function failHandler() {
+  const description = document.getElementById("description-win");
+  const header = document.getElementById("header-win");
+  const modalHeader = document.getElementById("modal-header");
+  header.innerHTML = "Infelizmente você não conseguiu";
+  description.innerHTML = "Você pode tentar novamente a qualquer hora";
+  modalHeader.style.background = "#f44336";
+  modal.style.display = "block";
 }
 
-span.onclick = function() {
+span.onclick = function () {
   modal.style.display = "none";
-}
+};
 
 function wrongLetter(idLetter, idWord) {
   const word = document.getElementById("word" + idWord);
