@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title-container">
+        <h1>Wordle Lógico</h1>
+      </div>
+      <section class="words-container">
+        <div id="word0" class="word">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div id="word1" class="word">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div id="word2" class="word">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div id="word3" class="word">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div id="word4" class="word">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+        <div id="word5" class="word">
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+          <div class="letter"></div>
+        </div>
+      </section>
+      <section class="buttons-container">
+        <button type="button" onclick="submitHandle()">Confirmar</button>
+
+        <button type="button" onclick="deleteHandle()">Deletar</button>
+      </section>
+      <section class="keypad-container">
+        <div class="keypad-init">
+          <button id="Q" type="button" onclick="letterHandle(this.id)">
+            Q
+          </button>
+          <button id="W" type="button" onclick="letterHandle(this.id)">
+            W
+          </button>
+          <button id="E" type="button" onclick="letterHandle(this.id)">
+            E
+          </button>
+          <button id="R" type="button" onclick="letterHandle(this.id)">
+            R
+          </button>
+          <button id="T" type="button" onclick="letterHandle(this.id)">
+            T
+          </button>
+          <button id="Y" type="button" onclick="letterHandle(this.id)">
+            Y
+          </button>
+          <button id="U" type="button" onclick="letterHandle(this.id)">
+            U
+          </button>
+          <button id="I" type="button" onclick="letterHandle(this.id)">
+            I
+          </button>
+          <button id="O" type="button" onclick="letterHandle(this.id)">
+            O
+          </button>
+          <button id="P" type="button" onclick="letterHandle(this.id)">
+            P
+          </button>
+        </div>
+        <div class="keypad-middle">
+          <button id="A" type="button" onclick="letterHandle(this.id)">
+            A
+          </button>
+          <button id="S" type="button" onclick="letterHandle(this.id)">
+            S
+          </button>
+          <button id="D" type="button" onclick="letterHandle(this.id)">
+            D
+          </button>
+          <button id="F" type="button" onclick="letterHandle(this.id)">
+            F
+          </button>
+          <button id="G" type="button" onclick="letterHandle(this.id)">
+            G
+          </button>
+          <button id="H" type="button" onclick="letterHandle(this.id)">
+            H
+          </button>
+          <button id="J" type="button" onclick="letterHandle(this.id)">
+            J
+          </button>
+          <button id="K" type="button" onclick="letterHandle(this.id)">
+            K
+          </button>
+          <button id="L" type="button" onclick="letterHandle(this.id)">
+            L
+          </button>
+        </div>
+        <div class="keypad-end">
+          <button id="Z" type="button" onclick="letterHandle(this.id)">
+            Z
+          </button>
+          <button id="X" type="button" onclick="letterHandle(this.id)">
+            X
+          </button>
+          <button id="C" type="button" onclick="letterHandle(this.id)">
+            C
+          </button>
+          <button id="V" type="button" onclick="letterHandle(this.id)">
+            V
+          </button>
+          <button id="B" type="button" onclick="letterHandle(this.id)">
+            B
+          </button>
+          <button id="N" type="button" onclick="letterHandle(this.id)">
+            N
+          </button>
+          <button id="M" type="button" onclick="letterHandle(this.id)">
+            M
+          </button>
+        </div>
+      </section>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="js/script.js"></script>
+    </div>
+  </body>
+</html>
