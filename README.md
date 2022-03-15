@@ -50,10 +50,11 @@ A partir disso o jogador tem algumas chances para adivinhar essa palavra usando 
 
 Assim que uma palavra inserida ela é avaliada em relação a palavra escondida e todos os caracteres que estão na mesma posição 
 na palavra misteriosa ficarão na cor verde. Aqueles que estão na palavra escondida mas não naquela localidade recebem a coloração
-amarela. Caso não esteja na palavra miseriosa a cor será cinza.
+amarela. Caso não esteja na palavra misteriosa a cor será cinza.
 
 ## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
+
+[Playlist](https://www.youtube.com/watch?v=zV4PXIWmV3U&list=PL1i0a-GpsR8W1W2XJWiHRGVJQ_TqEnrn-)
 
 ## Outros 
 
